@@ -20,7 +20,10 @@ import os
 # folder_path = '/home/autobuntu/Documents/PPP_RTK_Tests/07272023/exp3_rtk_back_in/' # we turned rtk back on
 # folder_path = '/home/autobuntu/Documents/PPP_RTK_Tests/07272023/exp4_ppp_off/' # we turned ppp off
 # folder_path = '/home/autobuntu/Documents/PPP_RTK_Tests/07272023/exp5_ppp_back_on/' # we turned ppp back on
-folder_path = '/home/autobuntu/Documents/PPP_RTK_Tests/07272023/exp6_novatel_cycle/' # we cycled the novatel
+# folder_path = '/home/autobuntu/Documents/PPP_RTK_Tests/07272023/exp6_novatel_cycle/' # we cycled the novatel
+
+# red_route test
+folder_path = '/home/autobuntu/Documents/red_route_test/'
 
 
 # Search string
@@ -31,7 +34,10 @@ folder_path = '/home/autobuntu/Documents/PPP_RTK_Tests/07272023/exp6_novatel_cyc
 # search = '20230727160519' # we turned rtk back on
 # search = '20230727161146' # we turned ppp off
 # search = '20230727162947' # we turned ppp back on
-search = '20230727164735' # we cycled the novatel
+# search = '20230727164735' # we cycled the novatel
+
+#red_route test
+search = '20230731140644'
 
 
 ###### VAR INIT ######
