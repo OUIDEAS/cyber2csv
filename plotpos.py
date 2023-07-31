@@ -8,6 +8,11 @@ import utm
 import numpy as np
 from matplotlib import cm, colors, ticker
 from math import sqrt
+from shapely.geometry import Point
+import geopandas as gpd
+from geopandas import GeoDataFrame
+import geopandas as gpd
+
 
 ## OPTIONS
 
@@ -70,7 +75,10 @@ from math import sqrt
 # search = '20230727155521' # we turned rtk off
 # search = '20230727160519' # we turned rtk back on
 # search = '20230727161146' # we turned ppp off
-search = '20230727164735' # we cycled the novatel
+# search = '20230727164735' # we cycled the novatel
+
+#red_route test
+search = '20230731140644'
 
 
 ## VAR INIT
@@ -128,6 +136,14 @@ ins_y_utm = df2.Y
 ins_z_utm = df2.Z
 
 sol_type_array = sol_type.to_numpy()
+
+
+## TO-DO: Create geo-plotting in python
+# # Create a geometry column using the Latitude and Longitude columns
+# gdf = gpd.GeoDataFrame(df, geometry=gpd.points_from_xy(df["Longitude"], df["Latitude"]))
+
+# # Set the coordinate reference system (CRS) to EPSG:4326 (WGS 84)
+# gdf.crs = gcrs.WGS84
 
 # DEBUG
 # print(sol_type)
@@ -197,6 +213,7 @@ fig3, ax3 = plt.subplots(2,1)
 fig4, ax4 = plt.subplots(1,1)
 fig5, ax5 = plt.subplots(1,1)
 fig6, ax6 = plt.subplots(1,1)
+fig7, ax7 = plt.subplots(1,1)
 
 ax1[0].scatter(longitude,latitude,c=sol_type, marker='o', alpha=0.3)
 ax1[1].scatter(longitude,latitude,c=num_sats, marker='^', alpha=0.3)

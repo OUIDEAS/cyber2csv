@@ -16,7 +16,8 @@ corr_opt = True
 # filename = '/home/autobuntu/Documents/PPP_RTK_Tests/07272023_novatel_logs/Exp3_RTK_BACK_IN.txt'
 # filename = '/home/autobuntu/Documents/PPP_RTK_Tests/07272023_novatel_logs/Exp4_PPP_OFF.txt'
 # filename = '/home/autobuntu/Documents/PPP_RTK_Tests/07272023_novatel_logs/Exp5_PPP_Back_On_rtk_still_on.txt'
-filename = '/home/autobuntu/Documents/PPP_RTK_Tests/07272023_novatel_logs/Exp6_novatel_cycle.txt'
+# filename = '/home/autobuntu/Documents/PPP_RTK_Tests/07272023_novatel_logs/Exp6_novatel_cycle.txt'
+filename = '/home/autobuntu/Documents/red_route_test/red_route.txt'
 
 extracted_data = []
 
