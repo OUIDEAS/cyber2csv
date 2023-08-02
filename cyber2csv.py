@@ -36,7 +36,7 @@ folder_path = '/home/autobuntu/Documents/red_route_test/'
 # search = '20230727162947' # we turned ppp back on
 # search = '20230727164735' # we cycled the novatel
 
-#red_route test
+#red_route
 search = '20230731140644'
 
 
