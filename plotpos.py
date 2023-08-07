@@ -78,7 +78,11 @@ import geopandas as gpd
 # search = '20230727164735' # we cycled the novatel
 
 #red_route test
-search = '20230731140644'
+# search = '20230731140644'
+
+# green_route_test
+search = '20230803153748'
+# search = '20230803154210'
 
 
 ## VAR INIT
@@ -213,7 +217,7 @@ fig3, ax3 = plt.subplots(2,1)
 fig4, ax4 = plt.subplots(1,1)
 fig5, ax5 = plt.subplots(1,1)
 fig6, ax6 = plt.subplots(1,1)
-fig7, ax7 = plt.subplots(1,1)
+# fig7, ax7 = plt.subplots(1,1)
 
 ax1[0].scatter(longitude,latitude,c=sol_type, marker='o', alpha=0.3)
 ax1[1].scatter(longitude,latitude,c=num_sats, marker='^', alpha=0.3)

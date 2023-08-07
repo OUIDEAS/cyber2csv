@@ -23,7 +23,10 @@ import os
 # folder_path = '/home/autobuntu/Documents/PPP_RTK_Tests/07272023/exp6_novatel_cycle/' # we cycled the novatel
 
 # red_route test
-folder_path = '/home/autobuntu/Documents/red_route_test/'
+# folder_path = '/home/autobuntu/Documents/red_route_test/'
+
+# green_route test
+folder_path = '/media/autobuntu/T3/08032023_Green_Route/'
 
 
 # Search string
@@ -37,7 +40,11 @@ folder_path = '/home/autobuntu/Documents/red_route_test/'
 # search = '20230727164735' # we cycled the novatel
 
 #red_route
-search = '20230731140644'
+# search = '20230731140644'
+
+# green_route_test
+# search = '20230803153748'
+search = '20230803154210'
 
 
 ###### VAR INIT ######

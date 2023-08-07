@@ -23,3 +23,5 @@ search = '20230727164735'
 ```
 filename = '/home/autobuntu/Documents/PPP_RTK_Tests/07272023_novatel_logs/Exp6_novatel_cycle.txt'
 ```
+
+In the MATLAB folder the ```BESTPOS_Log_Plotter.m``` script completes the same task as the ```bestpos_log_reader.py``` but with geo-plot.
