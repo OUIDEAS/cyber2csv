@@ -87,6 +87,11 @@
         plot_idx = plot_idx + 1;
     end
     
+    if plotstatusarray(14)
+        h(plot_idx) = plot(NaN, NaN, 's', 'MarkerEdgeColor', 'k', 'MarkerFaceColor', [color_array(10,:)], 'MarkerSize', 20);
+        legendLabels = [legendLabels, sprintf('\\color[rgb]{%f,%f,%f} INS PSRDIFF', color_array(10,1), color_array(10,2), color_array(10,3))];
+        plot_idx = plot_idx + 1;
+    end
     
     
     

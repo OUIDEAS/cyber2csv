@@ -50,6 +50,11 @@ function [color, plotstatusarray] = get_color(soln_type, plotstatusarray, color_
         color = color_array(9,:);
         plotstatusarray(13) = 1;
         
+    elseif soln_type == 'INS_PSRDIFF'
+        
+        color = color_array(10,:);
+        plotstatusarray(14) = 1;
+        
     end
     
 end

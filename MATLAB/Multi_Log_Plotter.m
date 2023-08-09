@@ -1,5 +1,10 @@
 %% Multi_Log_Plotter
-% scans a txt file that contains the output from several logs and plots
+% scans a txt file that contains the output from several logs and plots the
+% following:
+% inspvax, bestpos, ppppos, rtkpos std vs time (can choose which to plot)
+% bestpos solution type vs time, displayed as a background colored area
+% lines showing at which point something changed
+
 
 clear all
 close all
@@ -8,8 +13,8 @@ clc
 
 %% OPTIONS
 
-options.rtkon               = 0;
-options.pppon               = 1;
+options.rtkon               = 1;
+options.pppon               = 0;
 options.inspvax             = 1;
 options.bestpos             = 1;
 
@@ -20,25 +25,55 @@ freq                        = 10;
 %% VAR INIT
 
 % Load File
-log_table = Multi_Log_Reader("/home/autobuntu/Documents/08032023/rtk_test_4.txt", [1, Inf]);
+% log_table = Multi_Log_Reader("/home/autobuntu/Documents/08032023/rtk_test_4.txt", [1, Inf]);
 
-% ts_1 = [40, 55, 386, 392] * 10; % Experiment 1 ts
-% ts_2 = [80, 95, 420, 428] * 10; % Experiment 2 ts
-% ts_3 = [60, 76, 423, 428] * 10; % Experiment 3 ts
-% ts_4 = [42, 60, 337, 342] * 10; % Experiment 4 ts
-% ts_5 = [60, 300] * 10; % Experiment 5 ts
-% ts_6 = [66, 73, 84, 364, 370, 639] * 10; % Experiment 6 ts
-% ts_7 = [211, 218, 223, 540, 544, 792] * 10; % Experiment 7 ts
-% ts_8 = [176, 191, 210, 486, 490, 812] * 10; % Experiment 8 ts
+% Experiment 1
+% log_table = Multi_Log_Reader("/home/autobuntu/Documents/08032023/ppp_rtk_test_1.txt", [1, Inf]);
+% ts = [55, 392]; 
+% options.rtkon               = 1;
+% options.pppon               = 1;
 
-ts_1 = [55, 392]; % Experiment 1 ts
-ts_2 = [95, 428]; % Experiment 2 ts
-ts_3 = [76, 428]; % Experiment 3 ts
-ts_4 = [60, 342]; % Experiment 4 ts
-ts_5 = [60, 300]; % Experiment 5 ts
-ts_6 = [66, 84, 370, 639]; % Experiment 6 ts
-ts_7 = [211, 223, 544, 792]; % Experiment 7 ts
-ts_8 = [176, 210, 490, 812]; % Experiment 8 ts
+% Experiment 2 ts
+% ts = [95, 428]; 
+% log_table = Multi_Log_Reader("/home/autobuntu/Documents/08032023/ppp_test_2.txt", [1, Inf]);
+% options.rtkon               = 0;
+% options.pppon               = 1;
+
+% Experiment 3 ts
+% ts = [76, 428]; 
+% log_table = Multi_Log_Reader("/home/autobuntu/Documents/08032023/ppp_test_3.txt", [1, Inf]);
+% options.rtkon               = 0;
+% options.pppon               = 1;
+
+% Experiment 4 ts
+% ts = [60, 342]; 
+% log_table = Multi_Log_Reader("/home/autobuntu/Documents/08032023/rtk_test_4.txt", [1, Inf]);
+% options.rtkon               = 1;
+% options.pppon               = 0;
+
+% Experiment 5 ts
+% ts = [60, 300]; 
+% log_table = Multi_Log_Reader("/home/autobuntu/Documents/08032023/ppp_rtk_test_5.txt", [1, Inf]);
+% options.rtkon               = 1;
+% options.pppon               = 1;
+
+% Experiment 6 ts
+% ts = [66, 84, 370, 639]; 
+% log_table = Multi_Log_Reader("/home/autobuntu/Documents/08032023/ppp_rtk_test_6.txt", [1, Inf]);
+% options.rtkon               = 1;
+% options.pppon               = 1;
+
+% Experiment 7 ts
+% ts = [211, 223, 544, 792]; 
+% log_table = Multi_Log_Reader("/home/autobuntu/Documents/08032023/ppp_rtk_test_7.txt", [1, Inf]);
+% options.rtkon               = 1;
+% options.pppon               = 1;
+
+% Experiment 8 ts
+ts = [176, 210, 490, 812]; 
+log_table = Multi_Log_Reader("/home/autobuntu/Documents/08032023/ppp_rtk_test_8.txt", [1, Inf]);
+options.rtkon               = 1;
+options.pppon               = 1;
 
 % Array inits
 inspvax_tw                  = [];
@@ -132,16 +167,28 @@ ppppos_extsolnstatus        = [];
 ppppos_gbsigns              = [];
 ppppos_gpsglonas            = [];
    
-
-%%
-
-
 plotstatusarray = plot_status_init(options);
 
 legend_string = {};
 n = 15;
 % color_array = [linspace(0, 1, n)', linspace(1, 0, n)', 0.5 * (1 + sin(2 * pi * freq * (1:n) / n))'];
-color_array = rand(n, 3);
+% color_array = rand(n, 3);
+
+color_array =[  0.9160    0.6074    0.6476;...
+                0.0012    0.1917    0.6790;...
+                0.4624    0.7384    0.6358;...
+                0.4243    0.2428    0.9452;...
+                0.4609    0.9174    0.2089;...
+                0.7702    0.2691    0.7093;...
+                0.3225    0.7655    0.2362;...
+                0.7847    0.1887    0.1194;...
+                0.4714    0.2875    0.6073;...
+                0.0358    0.0911    0.4501;...
+                0.1759    0.5762    0.4587;...
+                0.7218    0.6834    0.6619;...
+                0.4735    0.5466    0.7703;...
+                0.1527    0.4257    0.3502;...
+                0.3411    0.6444    0.6620];
 
 %% Line Scanning
 
@@ -309,41 +356,27 @@ close(h)
 
 %% To Array as needed
 
-inspvax_latstd = table2array(inspvax_latstd);
-bestpos_latstd = table2array(bestpos_latstd);
-
-if options.rtkon
+if options.rtkon && ~isempty(rtkpos_latstd)
     rtkpos_latstd = table2array(rtkpos_latstd);
-end
-
-if options.pppon
-    ppppos_latstd = table2array(ppppos_latstd);
-end
-
-inspvax_lonstd = table2array(inspvax_lonstd);
-bestpos_lonstd = table2array(bestpos_lonstd);
-
-if options.rtkon
     rtkpos_lonstd = table2array(rtkpos_lonstd);
-end
-
-if options.pppon
-    ppppos_lonstd = table2array(ppppos_lonstd);
-end
-
-inspvax_ts = str2double(table2array(inspvax_ts));
-ppppos_ts = str2double(table2array(ppppos_ts));
-
-if options.rtkon
     rtkpos_ts = str2double(table2array(rtkpos_ts));
 end
 
-if options.pppon
-    bestpos_ts = str2double(table2array(bestpos_ts));
+if options.pppon && ~isempty(ppppos_latstd)
+    ppppos_latstd = table2array(ppppos_latstd);
+    ppppos_lonstd = table2array(ppppos_lonstd);
+    ppppos_ts = str2double(table2array(ppppos_ts));
 end
 
-bp_pos_type = categorical(table2array(bestpos_pos_type));
+inspvax_latstd = table2array(inspvax_latstd);
+inspvax_lonstd = table2array(inspvax_lonstd);
+inspvax_ts = str2double(table2array(inspvax_ts));
 
+bestpos_latstd = table2array(bestpos_latstd);
+bestpos_lonstd = table2array(bestpos_lonstd);
+bestpos_ts = str2double(table2array(bestpos_ts));
+
+bp_pos_type = categorical(table2array(bestpos_pos_type));
 
 
 %% Convert second array to local time
@@ -457,11 +490,11 @@ for change_idx = 1:length(bp_category_changes)
 end
 
 
-for ts_idx = 1:length(ts_3)
+for ts_idx = 1:length(ts)
     
     % Do Something
-    plot([ts_2(ts_idx), ts_2(ts_idx)], [0, area_y_max + 1], 'r--', 'LineWidth', .5)
-    text(ts_2(ts_idx), area_y_max + 1, num2str(ts_idx), 'HorizontalAlignment', 'center', 'VerticalAlignment', 'bottom', 'FontSize', 24)
+    plot([ts(ts_idx), ts(ts_idx)], [0, area_y_max + .1], 'r--', 'LineWidth', .5)
+    text(ts(ts_idx), area_y_max + .1, num2str(ts_idx), 'HorizontalAlignment', 'center', 'VerticalAlignment', 'bottom', 'FontSize', 24)
     
     
 end

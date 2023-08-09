@@ -9,6 +9,7 @@ function plotstatusarray = plot_status_init(options)
         plotstatus.INS_PPP = 0;
         plotstatus.INS_PPP_CONVERGING = 0;
         plotstatus.PPP_CONVERGING = 0;
+        plotstatus.INS_PSRDIFF = 0;
         
         if options.rtkon
             plotstatus.rtk = 1;
@@ -48,6 +49,7 @@ function plotstatusarray = plot_status_init(options)
                             plotstatus.INS_PSRSP;...
                             plotstatus.INS_PPP;...
                             plotstatus.INS_PPP_CONVERGING;...
-                            plotstatus.PPP_CONVERGING];
+                            plotstatus.PPP_CONVERGING;...
+                            plotstatus.INS_PSRDIFF];
 
 end
